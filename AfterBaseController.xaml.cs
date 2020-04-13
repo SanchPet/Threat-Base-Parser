@@ -22,8 +22,18 @@ namespace Homework_2_Csharp_Courses
         {
             PleaseWait wait = new PleaseWait();
             wait.Show();
-            DataBase.RefreshTheBase();
-            wait.Close();
+            if (!DataBase.RefreshTheBase())
+            {
+                wait.Close();
+                MainWindow mainWindow = new MainWindow(true);
+                mainWindow.Show();
+                Close();
+            }
+            else
+            {
+                wait.Close();
+            }
+            
         }
 
         private void AllThreatsButton_Click(object sender, RoutedEventArgs e)

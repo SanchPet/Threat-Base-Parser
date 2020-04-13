@@ -141,6 +141,7 @@ namespace Homework_2_Csharp_Courses
                 if(Directory.GetFiles(MainDirectory, "database.s").Length == 0)
                 {
                     System.Windows.MessageBox.Show("Похоже, что вы здесь уже были, но базы на вашем компьютере нет.\n\nСейчас вы будете переправлены на экран загрузки базы данных.", "Добро пожаловать вновь!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MainDirectory = null;
                     return false;
                 }
                 System.Windows.MessageBox.Show("Мы заметили, что вы уже скачивали базу данных!\n\nВ таком случае, вы можете сразу приступить к работе с базой.", "Добро пожаловать вновь!", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -188,8 +189,14 @@ namespace Homework_2_Csharp_Courses
             }   
         }
 
-        public static void RefreshTheBase()
+        public static bool RefreshTheBase()
         {
+            if (Directory.GetFiles(MainDirectory, "database.s").Length == 0)
+            {
+                System.Windows.MessageBox.Show("ЗАЧЕМ? Зачем вы удалили базу данных во время работы с программой????\n\nЗнаете, это подло, это необычный баг. Загрузите-ка базу данных повторно или закрывайте программу.", "Ошибка...", MessageBoxButton.OK, MessageBoxImage.Error);
+                MainDirectory = null;
+                return false;
+            }
             string link = @"https://bdu.fstec.ru/files/documents/thrlist.xlsx";
             WebClient webClient = new WebClient();
             webClient.DownloadFile(new Uri(link), MainDirectory + "base.xls");
@@ -206,6 +213,7 @@ namespace Homework_2_Csharp_Courses
                 dataBase = newDataBase;
             }
             File.Delete(MainDirectory + "base.xls");
+            return true;
         }
 
         public static void SaveDataBase(List<Threat> source)

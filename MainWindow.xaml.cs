@@ -10,18 +10,41 @@ namespace Homework_2_Csharp_Courses
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool programTriggered = false;
+
         public MainWindow()
         {
             this.ResizeMode = ResizeMode.NoResize;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            if (DataBase.IsDataBaseInstalled())
+            if (!programTriggered)
             {
-                AfterBaseController afterBaseController = new AfterBaseController();
-                afterBaseController.Show();
-                Close();
+                programTriggered = true;
+                if (DataBase.IsDataBaseInstalled())
+                {
+                    AfterBaseController afterBaseController = new AfterBaseController();
+                    afterBaseController.Show();
+                    Close();
+                }
             }
             
+        }
+
+        public MainWindow(bool started)
+        {
+            this.ResizeMode = ResizeMode.NoResize;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            InitializeComponent();
+            if (!started)
+            {
+                programTriggered = true;
+                if (DataBase.IsDataBaseInstalled())
+                {
+                    AfterBaseController afterBaseController = new AfterBaseController();
+                    afterBaseController.Show();
+                    Close();
+                }
+            }
         }
 
         private void CreateBaseButton_Click(object sender, RoutedEventArgs e)
