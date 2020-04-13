@@ -14,6 +14,7 @@ namespace Homework_2_Csharp_Courses
 
         public MainWindow()
         {
+            installPathLabel.IsReadOnly = true;
             this.ResizeMode = ResizeMode.NoResize;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
