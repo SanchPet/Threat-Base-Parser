@@ -14,7 +14,7 @@ namespace Homework_2_Csharp_Courses
     {
         public static string MainDirectory;
         public static List<Threat> dataBase;
-        public static string pathFileFolder = "D:\\Self development as a programmer\\C#\\C# Courses\\Labs\\Homework_2_Csharp_Courses\\Base\\InstallPath\\";
+        public static string pathFileFolder = AppContext.BaseDirectory;
 
         public static int Count { get=>dataBase.Count; }
 
