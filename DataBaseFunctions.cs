@@ -128,39 +128,60 @@ namespace Homework_2_Csharp_Courses
 
         public static bool IsDataBaseInstalled()
         {
-            if (Directory.GetFiles(pathFileFolder, "installPath.txt").Length == 0)
+            
+            try
             {
-                System.Windows.MessageBox.Show("Похоже, что вы здесь в первый раз!\n\nСейчас вы будете переправлены на экран загрузки базы данных.", "Добро пожаловать!", MessageBoxButton.OK, MessageBoxImage.Information);               
-                return false;
-            }
-            else
-            {
-
-                StreamReader sr = new StreamReader(pathFileFolder + "installPath.txt");
-                MainDirectory = sr.ReadToEnd();
-                if(Directory.GetFiles(MainDirectory, "database.s").Length == 0)
+               
+                if (Directory.GetFiles(pathFileFolder, "installPath.txt").Length == 0)
                 {
-                    System.Windows.MessageBox.Show("Похоже, что вы здесь уже были, но базы на вашем компьютере нет.\n\nСейчас вы будете переправлены на экран загрузки базы данных.", "Добро пожаловать вновь!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    MainDirectory = null;
+                    System.Windows.MessageBox.Show("Похоже, что вы здесь в первый раз!\n\nСейчас вы будете переправлены на экран загрузки базы данных.", "Добро пожаловать!", MessageBoxButton.OK, MessageBoxImage.Information);
                     return false;
                 }
-                System.Windows.MessageBox.Show("Мы заметили, что вы уже скачивали базу данных!\n\nВ таком случае, вы можете сразу приступить к работе с базой.", "Добро пожаловать вновь!", MessageBoxButton.OK, MessageBoxImage.Information);
-                dataBase = LoadDataBase(MainDirectory + "database.s");
-                return true;
+                else
+                {
+
+                    MainDirectory = File.ReadAllLines(pathFileFolder + "installPath.txt")[0];
+                    if (Directory.GetFiles(MainDirectory, "database.s").Length == 0)
+                    {
+                        System.Windows.MessageBox.Show("Похоже, что вы здесь уже были, но базы на вашем компьютере нет.\n\nСейчас вы будете переправлены на экран загрузки базы данных.", "Добро пожаловать вновь!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MainDirectory = null;
+                        return false;
+                    }
+                    System.Windows.MessageBox.Show("Мы заметили, что вы уже скачивали базу данных!\n\nВ таком случае, вы можете сразу приступить к работе с базой.", "Добро пожаловать вновь!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    try
+                    {
+                        dataBase = LoadDataBase(MainDirectory + "database.s");
+                    }
+                    catch
+                    {
+                        System.Windows.MessageBox.Show("Ошибка загрузки базы");
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            catch(Exception e)
+            {
+                System.Windows.MessageBox.Show(e.Message);
+                return false;
             }
         }
+        
 
         public static void SetPath()
         {
-            using (var fbd = new FolderBrowserDialog())
-            {
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            
+                using (var fbd = new FolderBrowserDialog())
                 {
-                    MainDirectory = fbd.SelectedPath + "\\";
+                    DialogResult result = fbd.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                    {
+                        MainDirectory = fbd.SelectedPath + "\\";
+                    }
                 }
-            }
+            
+            
         }
 
         public static void DownloadBase()
@@ -179,10 +200,10 @@ namespace Homework_2_Csharp_Courses
                 try
                 {                              
                     SaveDataBase(dataBase);
-                    File.WriteAllText(pathFileFolder + "installPath.txt", MainDirectory, Encoding.Default);
+                    File.WriteAllText(pathFileFolder + "installPath.txt", MainDirectory);
                     System.Windows.MessageBox.Show("База данных создана!", "Вы совершили действие...", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                catch (Exception e)
+                catch(Exception e)
                 {
                     System.Windows.MessageBox.Show(e.Message);
                 }
@@ -227,12 +248,21 @@ namespace Homework_2_Csharp_Courses
 
         public static List<Threat> LoadDataBase(string path)
         {
-            List<Threat> result;
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            BinaryFormatter bf = new BinaryFormatter();
-            result = (List<Threat>)bf.Deserialize(fs);
-            fs.Close();
+            List<Threat> result = null;
+            try
+            {
+                FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+                BinaryFormatter bf = new BinaryFormatter();
+                result = (List<Threat>)bf.Deserialize(fs);
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                System.Windows.MessageBox.Show(e.Message);
+            }
             return result;
         }
     }
 }
+
+

@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChooseThreat.xaml.cs">
+      <DependentUpon>ChooseThreat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InfoAboutOne.xaml.cs">
       <DependentUpon>InfoAboutOne.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,10 @@
     </Compile>
     <Compile Include="Threat.cs" />
     <Page Include="AfterBaseController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChooseThreat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

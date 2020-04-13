@@ -54,10 +54,16 @@ namespace Homework_2_Csharp_Courses
             {
                 try
                 {
-                    int index = Int32.Parse(Interaction.InputBox($"Введите номер записи:\n\n\nВсего записей: {DataBase.Count}", "Окошечко ввода", "Введите номер"));
-                    
-                    InfoAboutOne.recievedThreat = new DataBase()[index - 1];
-                    break;
+                    ChooseThreat chooseThreat = new ChooseThreat();
+                    if (chooseThreat.ShowDialog() == true)
+                    {
+                        InfoAboutOne.recievedThreat = new DataBase()[Int32.Parse(chooseThreat.index) - 1];
+                        break;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 catch
                 {

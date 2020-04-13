@@ -54,10 +54,13 @@ namespace Homework_2_Csharp_Courses
                 MessageBox.Show("Вы не выбрали путь установки!", "Ошибка...", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            PleaseWait wait = new PleaseWait();
-            wait.Show();
-            DataBase.DownloadBase();
-            wait.Close();
+            
+            
+                PleaseWait wait = new PleaseWait();
+                wait.Show();
+                DataBase.DownloadBase();
+                wait.Close();
+                       
             AfterBaseController afterBaseController = new AfterBaseController();
             afterBaseController.Show();
             Close();
