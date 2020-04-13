@@ -1,0 +1,17 @@
+﻿<Window x:Class="Homework_2_Csharp_Courses.AfterBaseController"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homework_2_Csharp_Courses"
+        mc:Ignorable="d"
+        Title="Меню программы" Height="450" Width="800">
+    <Grid>
+        <Label Content="Поздравляем! Ваша база данных&#xD;&#xA;        готова к использованию." HorizontalAlignment="Left" Height="78" Margin="199,30,0,0" VerticalAlignment="Top" Width="395" FontSize="24"/>
+        <Button HorizontalAlignment="Left" Margin="62,139,0,0" VerticalAlignment="Top" Width="186" Height="108" FontSize="22" Background="#FF8DF37D" Click="RefreshBase_Click" Content="Обновить&#xD;&#xA;    базу&#xD;&#xA;  данных" FontWeight="Bold"/>
+        <Button x:Name="allTheatsButton" Content="Просмотреть&#xD;&#xA;    общий&#xD;&#xA;   перечень&#xD;&#xA;      угроз" HorizontalAlignment="Left" Margin="546,139,0,0" VerticalAlignment="Top" Width="186" Height="108" Click="AllThreatsButton_Click" FontSize="18" FontWeight="Bold" Background="#FF8DF37D"/>
+        <Button x:Name="exitButton" Content="Завершить&#xD;&#xA;   работу" HorizontalAlignment="Left" Margin="546,277,0,0" VerticalAlignment="Top" Width="186" Height="107" FontSize="24" FontWeight="Bold" Background="#FFFF9292" Click="ExitButton_Click"/>
+        <Button x:Name="InfoAboutThreat" Content="Просмотреть&#xD;&#xA;все сведения&#xD;&#xA;об угрозе" HorizontalAlignment="Left" Margin="62,277,0,0" VerticalAlignment="Top" Width="186" Height="107" FontSize="22" FontWeight="Bold" Click="InfoAboutThreatButton_Click" Background="#FF8DF37D"/>
+
+    </Grid>
+</Window>
