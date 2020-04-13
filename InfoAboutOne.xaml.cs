@@ -22,14 +22,25 @@ namespace Homework_2_Csharp_Courses
 
         private void ChangeThreatButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            while (true)
             {
-                recievedThreat = new DataBase()[Int32.Parse(Interaction.InputBox($"Введите номер записи:\n\n\nВсего записей: {DataBase.Count}", "Окошечко ввода", "Введите номер")) - 1];
-            }
-            catch
-            {
-                MessageBox.Show("Вы что! Такой записи в базе нет...", "Ошибка...", MessageBoxButton.OK, MessageBoxImage.Error);
-                ChangeThreatButton_Click(sender, e);
+                try
+                {
+                    ChooseThreat chooseThreat = new ChooseThreat();
+                    if (chooseThreat.ShowDialog() == true)
+                    {
+                        recievedThreat = new DataBase()[Int32.Parse(chooseThreat.index) - 1];
+                        break;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Вы что! Такой записи в базе нет...", "Ошибка...", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             SetLabels();
         }

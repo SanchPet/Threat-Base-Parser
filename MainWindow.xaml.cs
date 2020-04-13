@@ -74,7 +74,7 @@ namespace Homework_2_Csharp_Courses
         private void SetPathButton_Click(object sender, RoutedEventArgs e)
         {
             DataBase.SetPath();
-            installPathLabel.Content = DataBase.MainDirectory;
+            installPathLabel.Text = DataBase.MainDirectory;
         }
     }
 

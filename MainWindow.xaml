@@ -17,9 +17,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="37,84.333,0,0" TextWrapping="Wrap" Text="Выбранный путь установки: " VerticalAlignment="Top" Width="234" Height="27" FontSize="18" Foreground="#FF0F0F0F" Grid.Row="1"/>
         <Border x:Name="textBlock1" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="27" Margin="37,84,0,0" VerticalAlignment="Top" Width="234" Grid.Row="1"/>
         <Button x:Name="setPath" Content="Выбрать (изменить) путь установки" HorizontalAlignment="Left" Margin="37,56.333,0,0" VerticalAlignment="Top" Width="192" Height="23" Click="SetPathButton_Click" FontSize="11" Grid.Row="1"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="27" Margin="271,84,0,0" Grid.Row="1" VerticalAlignment="Top" Width="460">
-            <Label x:Name="installPathLabel" Content="" Height="26" VerticalAlignment="Top"/>
-        </Border>
+        <TextBox x:Name="installPathLabel" HorizontalAlignment="Left" Height="27" Margin="271,84,0,0" Grid.Row="1" TextWrapping="Wrap" Text="тут пока пусто..." VerticalAlignment="Top" Width="460" />
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="27" Margin="271,84,0,0" Grid.Row="1" VerticalAlignment="Top" Width="460"/>
 
     </Grid>
 </Window>
