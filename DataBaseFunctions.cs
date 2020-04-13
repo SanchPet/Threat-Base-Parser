@@ -135,8 +135,14 @@ namespace Homework_2_Csharp_Courses
             }
             else
             {
+
                 StreamReader sr = new StreamReader(pathFileFolder + "installPath.txt");
                 MainDirectory = sr.ReadToEnd();
+                if(Directory.GetFiles(MainDirectory, "database.s").Length == 0)
+                {
+                    System.Windows.MessageBox.Show("Похоже, что вы здесь уже были, но базы на вашем компьютере нет.\n\nСейчас вы будете переправлены на экран загрузки базы данных.", "Добро пожаловать вновь!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return false;
+                }
                 System.Windows.MessageBox.Show("Мы заметили, что вы уже скачивали базу данных!\n\nВ таком случае, вы можете сразу приступить к работе с базой.", "Добро пожаловать вновь!", MessageBoxButton.OK, MessageBoxImage.Information);
                 dataBase = LoadDataBase(MainDirectory + "database.s");
                 return true;
@@ -187,7 +193,7 @@ namespace Homework_2_Csharp_Courses
             string link = @"https://bdu.fstec.ru/files/documents/thrlist.xlsx";
             WebClient webClient = new WebClient();
             webClient.DownloadFile(new Uri(link), MainDirectory + "base.xls");
-            List<Threat> newDataBase = ExcelToThreadList(MainDirectory, "base.xlsx");
+            List<Threat> newDataBase = ExcelToThreadList(MainDirectory, "base.xls");
             string result = DifferencesInThreatLists(dataBase, newDataBase);
             if (result == null)
             {
