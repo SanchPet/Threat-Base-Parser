@@ -14,10 +14,10 @@ namespace Homework_2_Csharp_Courses
 
         public MainWindow()
         {
+            InitializeComponent();
             installPathLabel.IsReadOnly = true;
             this.ResizeMode = ResizeMode.NoResize;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            InitializeComponent();
             if (!programTriggered)
             {
                 programTriggered = true;
