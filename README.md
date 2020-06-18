@@ -14,6 +14,8 @@ didn't delete the data, it will start from main menu.
 In main menu user can __refresh the database__, __see full list of threats__ or __see one threat in details__. 
 If the database was refreshed, user will see a message box with information about new sections. 
 There is also exit button. 
+
+Write me your thoughts about the code and my app. I am beginner and any code-review is very useful.
 ____
 ## Screenshots
 ![Setup menu](https://i.imgur.com/Icwerzt.png "Setup menu")
