@@ -1,7 +1,7 @@
 
 # About the program
 
-Thnaks you for the interest in my project. 
+Thanks you for the interest in my project. 
 The WPF porject made by me as a second homework from my C# courses in ITMO University. 
 There is a data parser from the base of threats of Federal Office for Technical and Export Control of Russia. 
 
